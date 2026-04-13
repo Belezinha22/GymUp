@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - GymUp</title>
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="../img/logo/Logo-removebg-preview.png" type="image/x-icon">
+</head>
+<body>
+  <header id="header">
+    <div class="logo">
+      <img src="../img/logo/Logo-removebg-preview.png" alt="Logo GymUp">
+      <h2>GymUp</h2>
+    </div>
+    <button class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+    <nav id="navbar">
+      <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="metas.html">Metas</a></li>
+        <li><a href="#">Planos</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="auth-section">
+    <div class="auth-container">
+      <div class="auth-header">
+        <h2>Crie sua conta</h2>
+        <p>Junte-se à comunidade GymUp e comece sua transformação</p>
+      </div>
+      
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="register-name">Nome Completo</label>
+          <input type="text" id="register-name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-email">E-mail</label>
+          <input type="email" id="register-email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-password">Senha</label>
+          <div class="password-input">
+            <input type="password" id="register-password" required>
+            <button type="button" class="toggle-password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="register-confirm-password">Confirme sua Senha</label>
+          <div class="password-input">
+            <input type="password" id="register-confirm-password" required>
+            <button type="button" class="toggle-password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Eu concordo com os <a href="#">Termos de Serviço</a> e <a href="#">Política de Privacidade</a></label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary auth-btn">Cadastrar</button>
+        
+        <div class="auth-footer">
+          <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/index.js"></script>
+</body>
+</html>

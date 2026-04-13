@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Academia para Iniciantes</title>
+    <link rel="shortcut icon" href="../../img/logo/Logo-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/content/iniciante.css">
+    <meta name="description"
+        content="Guia simples e direto para começar na academia com segurança: aquecimento, treino, exercícios base, nutrição e dúvidas." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+
+</head>
+
+<body>
+
+
+    <main class="container">
+        <!-- HERO -->
+        <button class="changePlan btn">
+            Mudar plano
+        </button>
+        <section class="hero" id="topo">
+            <div>
+                <h1>Comece na academia com segurança e consistência</h1>
+                <p>Um guia direto ao ponto para quem está iniciando: aquecimento, plano de treino simples, técnica dos
+                    exercícios e nutrição básica. Nada de complicar — foque no progresso.</p>
+                <div class="badges">
+                    <span class="badge">Sem achismo • baseado em boas práticas</span>
+                    <span class="badge">3 dias/semana • 45–60min</span>
+                    <span class="badge">Para qualquer idade</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- POR ONDE COMEÇAR -->
+        <section id="comecar">
+            <h2>Descrição</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>Objetivo:</h3>
+                    <ul class="list">
+                        <li> - Criar hábito</li>
+                        <li> - Aprender técnica correta</li>
+                        <li> - Melhorar condicionamento</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Frequência:</h3>
+                    <ul class="list">
+                        <li>- 3 a 4 vezes por semana</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANO DE TREINO -->
+        <section id="treino">
+            <h2>Plano de treino (3 dias/semana)</h2>
+            <p class="lead" style="border-bottom: 2px solid var(--cta-clr); width: 317px;">Lembre-se de usar cargas
+                leves no inicio.</p>
+            <div class="card">
+                <label for="filtroDia" style="margin-right:10px; font-weight:bold;">Filtrar por dia:</label>
+                <select id="filtroDia">
+                    <option value="todos">Todos</option>
+                    <option value="Seg">Segunda</option>
+                    <option value="Qua">Quarta</option>
+                    <option value="Sex">Sexta</option>
+                    <option value="+">Complementar (+)</option>
+                </select>
+
+                <table aria-label="Plano de treino para iniciantes">
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Exercício</th>
+                            <th>Séries × Reps</th>
+                            <th>Descanso</th>
+                            <th>Observações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-glightbox="title: Agachamento livre ou no Smith; description: 🦵 Pise inteiro no chão, mantenha coluna neutra, desça até confortável."
+                            data-href="https://cdn.exercisedb.com/images/agachamento.gif">
+                            <td>Seg</td>
+                            <td>Agachamento livre ou no Smith</td>
+                            <td>3 × 8–10</td>
+                            <td>60–90s</td>
+                            <td>Coluna neutra; profundidade confortável</td>
+                        </tr>
+                        <tr>
+                            <td>Seg</td>
+                            <td>Supino reto (halteres ou barra)</td>
+                            <td>3 × 8–10</td>
+                            <td>60–90s</td>
+                            <td>Ombros para baixo, pés firmes</td>
+                        </tr>
+                        <tr>
+                            <td>Seg</td>
+                            <td>Remada baixa na máquina</td>
+                            <td>3 × 10–12</td>
+                            <td>60–90s</td>
+                            <td>Puxe com as costas, não só os braços</td>
+                        </tr>
+                        <tr>
+                            <td>Qua</td>
+                            <td>Levantamento terra romeno (halteres)</td>
+                            <td>3 × 8–10</td>
+                            <td>75–90s</td>
+                            <td>Dobre o quadril; coluna neutra</td>
+                        </tr>
+                        <tr>
+                            <td>Qua</td>
+                            <td>Desenvolvimento de ombros (halteres)</td>
+                            <td>3 × 10–12</td>
+                            <td>60–90s</td>
+                            <td>Não hiperestenda a lombar</td>
+                        </tr>
+                        <tr>
+                            <td>Qua</td>
+                            <td>Puxada na frente (pegada aberta)</td>
+                            <td>3 × 10–12</td>
+                            <td>60–90s</td>
+                            <td>Peito aberto, desça controlando</td>
+                        </tr>
+                        <tr>
+                            <td>Sex</td>
+                            <td>Avanço / passada (halteres)</td>
+                            <td>2–3 × 10 por perna</td>
+                            <td>60–90s</td>
+                            <td>Passo longo; joelho alinhado</td>
+                        </tr>
+                        <tr>
+                            <td>Sex</td>
+                            <td>Tríceps na polia (corda)</td>
+                            <td>2–3 × 12–15</td>
+                            <td>45–60s</td>
+                            <td>Cotovelos fixos ao corpo</td>
+                        </tr>
+                        <tr>
+                            <td>Sex</td>
+                            <td>Rosca direta (halteres)</td>
+                            <td>2–3 × 12–15</td>
+                            <td>45–60s</td>
+                            <td>Sem balançar o tronco</td>
+                        </tr>
+                        <tr>
+                            <td>+</td>
+                            <td>Prancha</td>
+                            <td>2 × 20–40s</td>
+                            <td>45–60s</td>
+                            <td>Umbigo para dentro, glúteos contraídos</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="note" style="margin-top:20px">Caminhada leve ou bicicleta 10–20 min ao final se quiser
+                    melhorar o condicionamento.</p>
+            </div>
+        </section>
+
+        <!-- EXERCÍCIOS BASE -->
+        <section id="exercicios">
+            <h2>Exercícios base e técnica</h2>
+            <p class="lead">Foque em aprender o movimento. A carga sobe naturalmente com a prática.</p>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Agachamento</h3>
+                    <ul class="list">
+                        <li> Pise inteiro no chão, joelhos acompanham a ponta do pé.</li>
+                        <li> Coluna neutra; olhe para frente.</li>
+                        <li>⬇ Desça até onde manter a forma, suba empurrando o chão.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Supino</h3>
+                    <ul class="list">
+                        <li> Escápulas "para baixo e para trás" (banco estável).</li>
+                        <li> Antebraço vertical no meio da repetição.</li>
+                        <li> 2s descendo, 1s subindo.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Remada</h3>
+                    <ul class="list">
+                        <li> Conduza o cotovelo ao quadril.</li>
+                        <li> Tronco firme, sem girar o corpo.</li>
+                        <li> Pare 1s contraindo as costas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- AQUECIMENTO & ALONGAMENTO -->
+        <section>
+            <h2>Aquecimento &amp; pós-treino</h2>
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>Aquecimento dinâmico</h3>
+                    <ul class="list">
+                        <li>🚴 5 min cardio leve (esteira/bike).</li>
+                        <li>🌀 Mobilidade de quadril, ombro e tornozelo (10–12 rep).</li>
+                        <li>🏗️ 1 série de 12 repetições com <span class="tag">50% da carga</span> do primeiro
+                            exercício.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Depois do treino</h3>
+                    <ul class="list">
+                        <li>🧊 2–3 min de respiração calma antes de ir embora.</li>
+                        <li>🚶 5–10 min de volta à calma (caminhada leve).</li>
+                        <li>🧩 Alongamentos leves para áreas tensas (30–40s cada).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUTRIÇÃO BÁSICA -->
+        <section id="nutricao">
+            <h2>Nutrição básica</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>Prato do iniciante</h3>
+                    <ul class="list">
+                        <li>🥚 Proteína: ovos, frango, peixe, carne magra, tofu.</li>
+                        <li>🍚 Carboidratos: arroz, batata, mandioca, aveia, frutas.</li>
+                        <li>🥑 Gorduras boas: azeite, abacate, castanhas.</li>
+                    </ul>
+                    <p class="note">Inclua proteína em todas as refeições.</p>
+                </div>
+                <div class="card">
+                    <h3>Antes &amp; depois do treino</h3>
+                    <ul class="list">
+                        <li>⏱️ <b>Antes</b>: 60–120 min — carbo + proteína (ex.: pão + ovos).</li>
+                        <li>💧 Hidrate-se ao longo do dia.</li>
+                        <li>🍽️ <b>Depois</b>: refeição completa em até 2h.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Erros comuns</h3>
+                    <ul class="list">
+                        <li>❌ Pular refeições por longos períodos.</li>
+                        <li>❌ Suplementar sem necessidade.</li>
+                        <li>❌ Beber pouca água.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANO 4 SEMANAS -->
+        
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2>Dúvidas frequentes</h2>
+            <details>
+                <summary>Posso treinar todos os dias?</summary>
+                <p class="muted muted-faq">Você até pode alternar treinos, mas para iniciantes 3–4x/semana é o
+                    suficiente para
+                    progredir e recuperar.</p>
+            </details>
+            <details>
+                <summary>Quando aumentar a carga?</summary>
+                <p class="muted muted-faq">Quando completar todas as séries com boa técnica e ainda sentir que sobrariam
+                    1–2
+                    repetições. Aumente pouco (ex.: 2,5 kg).</p>
+            </details>
+            <details>
+                <summary>Preciso de suplementos?</summary>
+                <p class="muted muted-faq">Não obrigatoriamente. Foque em comida de verdade. Suplementos são
+                    conveniência quando a
+                    alimentação não cobre suas metas.</p>
+            </details>
+            <details>
+                <summary>Devo sentir dor?</summary>
+                <p class="muted muted-faq">É normal sentir <em>cansaço</em> e leve dor muscular tardia. Dor aguda nas
+                    articulações
+                    é sinal de alerta — ajuste a técnica e procure orientação.</p>
+            </details>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap">
+                <p>© <span id="ano"></span> Academia Iniciantes — feito para quem está começando. 🚀</p>
+                <p class="muted">Este conteúdo é informativo e não substitui acompanhamento profissional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modalExercicio" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitulo"></h3>
+            <p id="modalDescricao"></p>
+            <div id="modalMedia" style="margin-top:15px;">
+                <!-- A imagem será carregada dinamicamente pelo JavaScript -->
+            </div>
+        </div>
+    </div>
+    <script src="../../js/content/iniciante.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+</body>
+
+</html>

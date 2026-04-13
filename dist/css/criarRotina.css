@@ -1,0 +1,291 @@
+:root {
+    --primary: #FF6B6B;
+    --primary-dark: #E05555;
+    --secondary: #4ECDC4;
+    --bg-dark: #292F36;
+    --bg-darker: #1E2329;
+    --card-bg: #343A42;
+    --text-primary: #F7FFF7;
+    --text-secondary: #B8C0C8;
+    --border: #3D444E;
+    --success: #6BCB77;
+    --warning: #FFD166;
+}
+
+body {
+    margin: 0;
+    font-family: 'Bai Jamjuree', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    user-select: none;
+}
+
+.wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.left-panel {
+    width: 55%;
+    overflow-y: auto;
+    padding: 2rem;
+    background-color: var(--bg-darker);
+    min-width: 300px;
+}
+
+.right-panel {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border);
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    overflow-y: auto;
+    min-width: 300px;
+}
+
+.resize-handle {
+    width: 10px;
+    background-color: var(--border);
+    cursor: col-resize;
+    transition: background-color 0.2s;
+}
+
+.resize-handle:hover {
+    background-color: var(--primary);
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Bai Jamjuree', sans-serif;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Meta Panel Styles */
+.meta-panel {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.meta-panel h1 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.meta-badge {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.meta-stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat-item {
+    flex: 1;
+    background-color: var(--bg-dark);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.stat-item div div:first-child {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.stat-item strong {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+/* Workout Creator Styles */
+.workout-creator {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.workout-creator h1 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+select.input-field[multiple] {
+    height: auto;
+    min-height: 120px;
+}
+
+/* Workout Display Styles */
+.workout-display {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.workout-display h1 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Preview Styles */
+.preview-panel {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.preview-panel h1 {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.preview-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.preview-item {
+    margin-bottom: 1rem;
+}
+
+.preview-item strong {
+    color: var(--text-primary);
+    display: inline-block;
+    min-width: 120px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100% !important;
+        height: auto;
+    }
+
+    .right-panel {
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .resize-handle {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .meta-stats {
+        flex-direction: column;
+    }
+}

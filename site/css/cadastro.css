@@ -1,0 +1,362 @@
+:root {
+    --bg-clr: #121212;
+    --text-clr: #FFFFFF;
+    --secondary-text-clr: #CCCCCC;
+    --accent-clr: #00E676;
+    --cta-clr: #FF7043;
+    --dark-section-clr: #1E1E1E;
+    --feature-card-clr: #2D2D2D;
+    --navbar-height: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-clr);
+    color: var(--text-clr);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    margin: auto;
+}
+
+.cadastro-image-container {
+    position: relative;
+    display: flex;
+}
+
+.cadastro-image {
+    width: 500px;
+    height: 90vh;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    width: 150px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(1.8px);
+    -webkit-backdrop-filter: blur(1.8px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.back-button svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.cadastro-section {
+    width: 100%;
+    max-width: 480px;
+}
+
+.cadastro-container {
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.cadastro-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cadastro-header h2 {
+    color: var(--accent-clr);
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.cadastro-header p {
+    color: var(--secondary-text-clr);
+    font-size: 16px;
+}
+
+.cadastro-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* apenas 1 coluna */
+    gap: 20px;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group label {
+    color: var(--secondary-text-clr);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+    background-color: var(--feature-card-clr);
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: var(--text-clr);
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-clr);
+}
+
+#senha {
+    width: 100%;
+}
+
+#peso {
+    width: 100%;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.terms {
+    color: #00E676;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.terms:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--accent-clr);
+    color: var(--bg-clr);
+}
+
+.btn-primary:hover {
+    background-color: #00C853;
+    transform: translateY(-2px);
+}
+
+.msg {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--secondary-text-clr);
+}
+
+.auth-footer a {
+    color: var(--accent-clr);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries para responsividade */
+
+/* Tablets e telas menores */
+@media (max-width: 1024px) {
+    .container {
+        gap: 30px;
+    }
+
+    .cadastro-image {
+        width: 400px;
+        height: 85vh;
+    }
+}
+
+/* Tablets menores e dispositivos grandes em modo paisagem */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .cadastro-image {
+        display: none;
+    }
+
+    .cadastro-section {
+        max-width: 100%;
+    }
+
+    .back-button {
+        display: none;
+    }
+}
+
+/* Dispositivos móveis (smartphones) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .cadastro-container {
+        padding: 20px;
+    }
+
+    .cadastro-header h2 {
+        font-size: 24px;
+    }
+
+    .form-row-2 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 16px;
+        /* Mantém tamanho legível em mobile */
+    }
+
+    input[type=checkbox] {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn {
+        padding: 12px;
+    }
+
+    .back-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .back-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .cadastro-container {
+        padding: 15px;
+    }
+
+    .cadastro-header h2 {
+        font-size: 22px;
+    }
+
+    .cadastro-header p {
+        font-size: 14px;
+    }
+
+    .cadastro-form {
+        gap: 15px;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .auth-footer {
+        font-size: 14px;
+    }
+
+    .back-button {
+        top: 10px;
+        left: 10px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .back-button svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Ajustes para orientação paisagem em dispositivos móveis */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .container {
+        flex-direction: row;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .cadastro-image {
+        height: 85vh;
+        max-height: 400px;
+    }
+
+    .back-button {
+        top: 15px;
+        left: 15px;
+    }
+}
