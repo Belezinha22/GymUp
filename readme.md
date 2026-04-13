@@ -25,5 +25,5 @@ npm run build
 ## Observacoes
 
 - Os dados da aplicacao sao persistidos em `localStorage`.
-- As imagens e videos antigos foram reaproveitados como assets publicos via a pasta `site/`.
+- As imagens e videos utilizados pela aplicacao ficam em `src/assets/`.
 - O projeto esta pronto para receber um backend futuro em qualquer linguagem.

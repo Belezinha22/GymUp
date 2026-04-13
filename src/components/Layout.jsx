@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
+import logo from '../assets/images/logo/Logo-removebg-preview.png';
 
 const navigation = [
   { to: '/', label: 'Inicio' },
@@ -15,7 +16,7 @@ export default function Layout({ children }) {
     <div className="app-shell">
       <header className="site-header">
         <NavLink className="brand" to="/">
-          <img src="/img/logo/Logo-removebg-preview.png" alt="GymUp" />
+          <img src={logo} alt="GymUp" />
           <div>
             <strong>GymUp</strong>
             <span>React edition</span>
