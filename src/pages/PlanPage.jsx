@@ -28,6 +28,16 @@ export default function PlanPage() {
       ? workouts
       : workouts.filter((workout) => workout.day === selectedDay);
 
+  const getExercisePr = (exerciseName) => {
+    const exercisePrs = prs.filter((item) => item.exercise === exerciseName);
+
+    if (!exercisePrs.length) {
+      return null;
+    }
+
+    return exercisePrs.reduce((best, item) => (Number(item.weight) > Number(best.weight) ? item : best));
+  };
+
   const openExercise = (workout) => {
     setSelectedExercise(workout);
     setDraftNote(notes[workout.exercise] ?? '');
@@ -72,6 +82,24 @@ export default function PlanPage() {
     const [moved] = next.splice(sourceIndex, 1);
     next.splice(targetIndex, 0, moved);
     reorderPlanWorkouts(slug, next);
+  };
+
+  const removeWorkout = (workoutToRemove) => {
+    const shouldRemove = window.confirm(`Remover ${workoutToRemove.exercise} deste plano?`);
+
+    if (!shouldRemove) {
+      return;
+    }
+
+    const next = workouts.filter(
+      (workout) => !(workout.day === workoutToRemove.day && workout.exercise === workoutToRemove.exercise)
+    );
+
+    reorderPlanWorkouts(slug, next);
+
+    if (selectedExercise?.exercise === workoutToRemove.exercise) {
+      closeExercise();
+    }
   };
 
   const renderDifficulty = (value = 0) => {
@@ -155,31 +183,48 @@ export default function PlanPage() {
             <span>Descanso</span>
             <span>Acao</span>
           </div>
-          {filteredWorkouts.map((workout) => (
-            <div
-              key={`${workout.day}-${workout.exercise}`}
-              className={draggingExercise?.exercise === workout.exercise ? 'workout-row dragging' : 'workout-row'}
-              draggable
-              onDragStart={() => setDraggingExercise(workout)}
-              onDragEnd={() => setDraggingExercise(null)}
-              onDragOver={(event) => event.preventDefault()}
-              onDrop={() => {
-                moveWorkout(draggingExercise, workout);
-                setDraggingExercise(null);
-              }}
-            >
-              <span>{workout.day}</span>
-              <span>{workout.exercise}</span>
-              <span>{workout.sets}</span>
-              <span>{workout.rest}</span>
-              <div className="workout-actions">
-                <button type="button" className="inline-link" onClick={() => openExercise(workout)}>
-                  Abrir
-                </button>
-                <span className="drag-hint">Arraste</span>
+          {filteredWorkouts.map((workout) => {
+            const exerciseNote = notes[workout.exercise]?.trim();
+            const exercisePr = getExercisePr(workout.exercise);
+
+            return (
+              <div
+                key={`${workout.day}-${workout.exercise}`}
+                className={draggingExercise?.exercise === workout.exercise ? 'workout-row dragging' : 'workout-row'}
+                draggable
+                onDragStart={() => setDraggingExercise(workout)}
+                onDragEnd={() => setDraggingExercise(null)}
+                onDragOver={(event) => event.preventDefault()}
+                onDrop={() => {
+                  moveWorkout(draggingExercise, workout);
+                  setDraggingExercise(null);
+                }}
+              >
+                <span>{workout.day}</span>
+                <span>{workout.exercise}</span>
+                <span>{workout.sets}</span>
+                <span>{workout.rest}</span>
+                <div className="workout-actions">
+                  <button type="button" className="inline-link" onClick={() => openExercise(workout)}>
+                    Abrir
+                  </button>
+                  <button type="button" className="remove-exercise-button" onClick={() => removeWorkout(workout)}>
+                    Remover
+                  </button>
+                  <span className="drag-hint">Arraste</span>
+                </div>
+                <div className="workout-extra">
+                  <span>
+                    <strong>Anotacao:</strong> {exerciseNote || 'Sem anotacao salva.'}
+                  </span>
+                  <span>
+                    <strong>PR:</strong>{' '}
+                    {exercisePr ? `${exercisePr.weight} kg em ${exercisePr.date}` : 'Nenhum PR registrado.'}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -204,7 +249,7 @@ export default function PlanPage() {
                 Fechar
               </button>
             </div>
-            <video className="exercise-video" src={selectedExercise.video} controls />
+            <video className="exercise-video" src={selectedExercise.video} controls autoPlay/>
             <p>{selectedExercise.notes}</p>
             <div className="exercise-meta">
               <div>

@@ -152,19 +152,7 @@ export default function HomePage() {
         </article>
       </section>
 
-      <section className="plan-grid">
-        {plans.map((plan) => (
-          <article key={plan.slug} className="plan-card">
-            <img src={plan.heroImage} alt={plan.label} />
-            <div className="plan-card-content">
-              <div className="pill">{plan.label}</div>
-              <h3>{plan.title}</h3>
-              <p>{plan.description}</p>
-              <Link to={`/planos/${plan.slug}`} className="inline-link">Explorar plano</Link>
-            </div>
-          </article>
-        ))}
-      </section>
+     
     </div>
   );
 }
