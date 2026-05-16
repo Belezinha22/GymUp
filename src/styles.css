@@ -503,6 +503,110 @@ h4 {
   box-shadow: var(--shadow);
 }
 
+.chart-panel {
+  margin-top: 1.5rem;
+  background: var(--surface);
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+.chart-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.chart-controls select {
+  min-width: 160px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.9rem 1rem;
+  color: var(--text);
+}
+
+.chart-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.chart-summary span {
+  display: inline-flex;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+}
+
+.chart-summary strong {
+  color: var(--teal);
+}
+
+.load-chart {
+  overflow-x: auto;
+  padding: 0.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+
+.load-chart svg {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+}
+
+.chart-axis {
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 2;
+}
+
+.chart-grid-line {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1.5;
+}
+
+.chart-grid-line.vertical {
+  stroke: rgba(255, 255, 255, 0.38);
+  stroke-dasharray: 8 12;
+  stroke-linecap: round;
+}
+
+.chart-grid-line.horizontal {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-point {
+  fill: var(--accent);
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.chart-label {
+  fill: var(--muted);
+  font-size: 0.50rem;
+}
+
+.chart-value {
+  fill: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .workout-table {
   margin-top: 1rem;
   display: grid;
@@ -512,7 +616,7 @@ h4 {
   display: grid;
   grid-template-columns: 1.1fr 1.5fr 0.8fr 0.8fr 0.9fr;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1rem 0.8rem;
   border-bottom: 1px solid var(--line);
   align-items: center;
   transition: all .3s ease;
@@ -602,8 +706,18 @@ h4 {
 }
 
 .profile-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 1.5rem;
+}
+
+.profile-form-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form-card .primary-button {
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 .tables-grid {
@@ -657,6 +771,19 @@ h4 {
   gap: 1rem;
   padding: 0.9rem 0;
   border-bottom: 1px solid var(--line);
+}
+
+.body-measure-table .simple-table-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.body-measure-table .simple-table-row span {
+  color: var(--muted);
+}
+
+.body-measure-table .simple-table-row span:first-child {
+  color: var(--text);
+  font-weight: 700;
 }
 
 .timeline-list {
@@ -805,6 +932,8 @@ h4 {
   .workout-extra,
   .goal-card-top,
   .workout-panel-header,
+  .chart-controls,
+  .chart-summary,
   .modal-card-header,
   .split-grid,
   .simple-table-row,
@@ -820,6 +949,10 @@ h4 {
 
   .site-header {
     padding: 1rem;
+  }
+
+  .chart-controls select {
+    width: 100%;
   }
 
   .hero-copy,

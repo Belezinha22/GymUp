@@ -37,8 +37,8 @@ export function AppProvider({ children }) {
     { id: 2, exercise: 'Agachamento goblet', weight: 28, date: '2026-04-06' },
   ]));
   const [history, setHistory] = useState(() => readStorage(storageKeys.history, [
-    { id: 1, date: '2026-03-10', weight: 74, waist: 83, hip: 96 },
-    { id: 2, date: '2026-04-10', weight: 72, waist: 80, hip: 95 },
+    { id: 1, date: '2026-03-10', chest: 98, waist: 83, hip: 96, arm: 34, thigh: 56, calf: 38 },
+    { id: 2, date: '2026-04-10', chest: 100, waist: 80, hip: 95, arm: 35, thigh: 57, calf: 39 },
   ]));
   const [notes, setNotes] = useState(() => readStorage(storageKeys.notes, {}));
   const [workoutOrders, setWorkoutOrders] = useState(() => readStorage(storageKeys.workoutOrders, {}));

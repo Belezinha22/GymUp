@@ -44,6 +44,13 @@ export default function PlanPage() {
     setPrValue('');
   };
 
+  const handleWorkoutKeyDown = (event, workout) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openExercise(workout);
+    }
+  };
+
   const closeExercise = () => {
     setSelectedExercise(null);
     setDraftNote('');
@@ -191,7 +198,11 @@ export default function PlanPage() {
               <div
                 key={`${workout.day}-${workout.exercise}`}
                 className={draggingExercise?.exercise === workout.exercise ? 'workout-row dragging' : 'workout-row'}
+                role="button"
+                tabIndex={0}
                 draggable
+                onClick={() => openExercise(workout)}
+                onKeyDown={(event) => handleWorkoutKeyDown(event, workout)}
                 onDragStart={() => setDraggingExercise(workout)}
                 onDragEnd={() => setDraggingExercise(null)}
                 onDragOver={(event) => event.preventDefault()}
@@ -205,10 +216,14 @@ export default function PlanPage() {
                 <span>{workout.sets}</span>
                 <span>{workout.rest}</span>
                 <div className="workout-actions">
-                  <button type="button" className="inline-link" onClick={() => openExercise(workout)}>
-                    Abrir
-                  </button>
-                  <button type="button" className="remove-exercise-button" onClick={() => removeWorkout(workout)}>
+                  <button
+                    type="button"
+                    className="remove-exercise-button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      removeWorkout(workout);
+                    }}
+                  >
                     Remover
                   </button>
                   <span className="drag-hint">Arraste</span>
