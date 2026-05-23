@@ -214,7 +214,7 @@ h4 {
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75)),
-    url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80') center/cover;
+    var(--hero-panel-image, url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1600&q=80')) center/cover;
 }
 
 .plan-hero,
@@ -236,12 +236,16 @@ h4 {
   padding: 1.6rem;
 }
 
-.hero-card-body{
-  padding-top: 1rem;
+.hero-card-body {
+  padding-top: 35px;
 }
 
 .hero-card-body strong{
   color: #00e676;
+}
+
+.hero-card-body h2{
+  font-size: 2.2rem;
 }
 
 .hero-copy h1,
@@ -297,7 +301,6 @@ h4 {
   overflow: hidden;
 }
 
-.hero-card img,
 .plan-card img,
 .goal-card img,
 .plan-hero img {
@@ -308,8 +311,8 @@ h4 {
 }
 
 .hero-card {
-  display: grid;
-  grid-template-rows: 1.35fr auto;
+  display: flex;
+  align-items: start;
 }
 
 .stats-grid,
@@ -720,6 +723,108 @@ h4 {
   margin-top: auto;
 }
 
+.body-map-card {
+  min-height: 100%;
+}
+
+.body-map-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.body-map-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.95fr) minmax(190px, 0.8fr);
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.body-map-figure {
+  position: relative;
+  width: min(100%, 320px);
+  aspect-ratio: 1 / 1.65;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.body-measure-point {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 50%;
+  border: 3px solid var(--text);
+  background: var(--accent);
+  box-shadow: 0 0 0 7px rgba(255, 112, 67, 0.18);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.body-measure-point:hover,
+.body-measure-point:focus-visible {
+  background: var(--teal);
+  box-shadow: 0 0 0 9px rgba(0, 230, 118, 0.18);
+  transform: translate(-50%, -50%) scale(1.2);
+  outline: none;
+  z-index: 3;
+}
+
+.measure-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  min-width: 132px;
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 12px;
+  padding: 0.55rem 0.7rem;
+  background: #0f0f0f;
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.body-measure-point:hover .measure-tooltip,
+.body-measure-point:focus-visible .measure-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.body-map-stats {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.body-map-stats div {
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+}
+
+.body-map-stats span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.86rem;
+  margin-bottom: 0.35rem;
+}
+
+.body-map-stats strong {
+  color: var(--teal);
+  font-size: 1.35rem;
+}
+
 .tables-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -918,6 +1023,14 @@ h4 {
     max-height: 280px;
   }
 
+  .body-map-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .body-map-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .carousel-card {
     width: 88%;
     margin-left: -44%;
@@ -935,6 +1048,7 @@ h4 {
   .chart-controls,
   .chart-summary,
   .modal-card-header,
+  .body-map-header,
   .split-grid,
   .simple-table-row,
   .carousel-shell {
@@ -955,8 +1069,15 @@ h4 {
     width: 100%;
   }
 
+  .body-map-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .body-map-figure {
+    max-width: 280px;
+  }
+
   .hero-copy,
-  .hero-card-body,
   .plan-hero-copy,
   .goal-card-content,
   .info-card,
