@@ -18,7 +18,10 @@ export default function HomePage() {
 
   return (
     <div className="page">
-      <section className="hero-panel">
+      <section
+        className="hero-panel"
+        style={{ '--hero-panel-image': `url(${featuredPlan.heroImage})` }}
+      >
         <div className="hero-copy">
           <span className="eyebrow">Treino, constancia e clareza</span>
           <h1>Transforme o antigo GymUp em uma experiencia React pronta para evoluir.</h1>
@@ -32,7 +35,6 @@ export default function HomePage() {
           </div>
         </div>
         <div className="hero-card">
-          <img src={featuredPlan.heroImage} alt={featuredPlan.label} />
           <div className="hero-card-body">
             <strong>Plano em destaque</strong>
             <h2>{featuredPlan.label}</h2>

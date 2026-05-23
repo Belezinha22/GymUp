@@ -9,8 +9,10 @@ export default function ProfilePage() {
     date: new Date().toISOString().slice(0, 10),
     chest: '',
     waist: '',
+    abdomen: '',
     hip: '',
     arm: '',
+    forearm: '',
     thigh: '',
     calf: '',
   });
@@ -83,6 +85,16 @@ export default function ProfilePage() {
   const firstChartPoint = chartData[0];
   const lastChartPoint = chartData[chartData.length - 1];
   const loadEvolution = firstChartPoint && lastChartPoint ? Number(lastChartPoint.weight) - Number(firstChartPoint.weight) : 0;
+  const bodyMeasurePoints = [
+    { key: 'chest', label: 'Peito/Torax', x: 50, y: 27 },
+    { key: 'waist', label: 'Cintura', x: 50, y: 42 },
+    { key: 'abdomen', label: 'Abdomen', x: 50, y: 36 },
+    { key: 'hip', label: 'Quadril', x: 50, y: 50 },
+    { key: 'arm', label: 'Braco', x: 28, y: 35 },
+    { key: 'forearm', label: 'Antebraco', x: 21, y: 49 },
+    { key: 'thigh', label: 'Coxa', x: 43, y: 66 },
+    { key: 'calf', label: 'Panturrilha', x: 58, y: 84 },
+  ];
 
   const formatDate = (date) => {
     return new Date(`${date}T00:00:00`).toLocaleDateString('pt-BR');
@@ -100,8 +112,10 @@ export default function ProfilePage() {
       ...historyForm,
       chest: Number(historyForm.chest),
       waist: Number(historyForm.waist),
+      abdomen: Number(historyForm.abdomen),
       hip: Number(historyForm.hip),
       arm: Number(historyForm.arm),
+      forearm: Number(historyForm.forearm),
       thigh: Number(historyForm.thigh),
       calf: Number(historyForm.calf),
     });
@@ -109,8 +123,10 @@ export default function ProfilePage() {
       date: new Date().toISOString().slice(0, 10),
       chest: '',
       waist: '',
+      abdomen: '',
       hip: '',
       arm: '',
+      forearm: '',
       thigh: '',
       calf: '',
     });
@@ -136,19 +152,7 @@ export default function ProfilePage() {
           <Link to={`/planos/${selectedPlan}`} className="inline-link">Abrir plano selecionado</Link>
         </article>
 
-        <article className="info-card">
-          <h3>Ultimas medidas corporais</h3>
-          {latestHistory ? (
-            <>
-              <p>Peito: {latestHistory.chest ?? '--'} cm</p>
-              <p>Cintura: {latestHistory.waist ?? '--'} cm</p>
-              <p>Braco: {latestHistory.arm ?? '--'} cm</p>
-              <p>Panturrilha: {latestHistory.calf ?? '--'} cm</p>
-            </>
-          ) : (
-            <p>Sem historico registrado ainda.</p>
-          )}
-        </article>
+        
       </section>
 
       <section className="profile-grid">
@@ -171,6 +175,10 @@ export default function ProfilePage() {
               <span>Altura</span>
               <input type="number" step="0.01" value={profile.height} onChange={(e) => setProfile((c) => ({ ...c, height: Number(e.target.value) }))} />
             </label>
+            <label className="field full-span">
+              <span>Gordura corporal (%)</span>
+              <input type="number" step="0.1" value={profile.bodyFat ?? ''} onChange={(e) => setProfile((c) => ({ ...c, bodyFat: Number(e.target.value) }))} />
+            </label>
           </div>
           <button type="submit" className="primary-button">Salvar perfil</button>
         </form>
@@ -191,12 +199,20 @@ export default function ProfilePage() {
               <input type="number" step="0.1" value={historyForm.waist} onChange={(e) => setHistoryForm((c) => ({ ...c, waist: e.target.value }))} required />
             </label>
             <label className="field">
+              <span>Abdomen (cm)</span>
+              <input type="number" step="0.1" value={historyForm.abdomen} onChange={(e) => setHistoryForm((c) => ({ ...c, abdomen: e.target.value }))} required />
+            </label>
+            <label className="field">
               <span>Quadril (cm)</span>
               <input type="number" step="0.1" value={historyForm.hip} onChange={(e) => setHistoryForm((c) => ({ ...c, hip: e.target.value }))} required />
             </label>
             <label className="field">
               <span>Braco (cm)</span>
               <input type="number" step="0.1" value={historyForm.arm} onChange={(e) => setHistoryForm((c) => ({ ...c, arm: e.target.value }))} required />
+            </label>
+            <label className="field">
+              <span>Antebraco (cm)</span>
+              <input type="number" step="0.1" value={historyForm.forearm} onChange={(e) => setHistoryForm((c) => ({ ...c, forearm: e.target.value }))} required />
             </label>
             <label className="field">
               <span>Coxa (cm)</span>
@@ -330,8 +346,10 @@ export default function ProfilePage() {
                 <span>{item.date}</span>
                 <span>Peito {item.chest ?? '--'} cm</span>
                 <span>Cintura {item.waist ?? '--'} cm</span>
+                <span>Abdomen {item.abdomen ?? '--'} cm</span>
                 <span>Quadril {item.hip ?? '--'} cm</span>
                 <span>Braco {item.arm ?? '--'} cm</span>
+                <span>Antebraco {item.forearm ?? '--'} cm</span>
                 <span>Coxa {item.thigh ?? '--'} cm</span>
                 <span>Panturrilha {item.calf ?? '--'} cm</span>
               </div>
