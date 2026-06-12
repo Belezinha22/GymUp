@@ -1,9 +1,39 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
+import fullBodyFront from '../assets/images/bodyParts/fullBodyFront.png';
+import back from '../assets/images/bodyParts/back.png';
+
+const muscleHotspots = [
+  { id: 'biceps-left', label: 'Biceps esquerdo', x: 33, y: 31 },
+  { id: 'biceps-right', label: 'Biceps direito', x: 67, y: 31 },
+  { id: 'forearm-left', label: 'Antebraco esquerdo', x: 25, y: 44 },
+  { id: 'forearm-right', label: 'Antebraco direito', x: 75, y: 44 },
+  { id: 'thigh-left', label: 'Coxa esquerda', x: 43, y: 61 },
+  { id: 'thigh-right', label: 'Coxa direita', x: 57, y: 61 },
+  { id: 'calf-left', label: 'Panturrilha esquerda', x: 43, y: 79 },
+  { id: 'calf-right', label: 'Panturrilha direita', x: 57, y: 79 },
+];
+
+const backMuscleHotspots = [
+  { id: 'trapezius-left', label: 'Trapezio esquerdo', x: 44, y: 22 },
+  { id: 'trapezius-right', label: 'Trapezio direito', x: 56, y: 22 },
+  { id: 'rear-deltoid-left', label: 'Deltoide posterior esquerdo', x: 32, y: 30 },
+  { id: 'rear-deltoid-right', label: 'Deltoide posterior direito', x: 68, y: 30 },
+  { id: 'triceps-back-left', label: 'Triceps esquerdo', x: 27, y: 40 },
+  { id: 'triceps-back-right', label: 'Triceps direito', x: 73, y: 40 },
+  { id: 'lat-left', label: 'Dorsal esquerdo', x: 39, y: 39 },
+  { id: 'lat-right', label: 'Dorsal direito', x: 61, y: 39 },
+  { id: 'lower-back', label: 'Lombar', x: 50, y: 49 },
+  { id: 'glute-left', label: 'Gluteo esquerdo', x: 43, y: 60 },
+  { id: 'glute-right', label: 'Gluteo direito', x: 57, y: 60 },
+  { id: 'hamstring-left', label: 'Posterior de coxa esquerdo', x: 43, y: 72 },
+  { id: 'hamstring-right', label: 'Posterior de coxa direito', x: 57, y: 72 },
+  { id: 'calf-back-left', label: 'Panturrilha esquerda', x: 43, y: 84 },
+  { id: 'calf-back-right', label: 'Panturrilha direita', x: 57, y: 84 },
+];
 
 export default function ProfilePage() {
-  const { user, selectedPlan, prs, history, updateProfile, addHistory } = useApp();
+  const { user, prs, history, updateProfile, addHistory } = useApp();
   const [profile, setProfile] = useState(user);
   const [historyForm, setHistoryForm] = useState({
     date: new Date().toISOString().slice(0, 10),
@@ -22,7 +52,6 @@ export default function ProfilePage() {
     if (!profile?.weight || !profile?.height) return null;
     return (profile.weight / (profile.height * profile.height)).toFixed(1);
   }, [profile]);
-  const latestHistory = history[history.length - 1];
   const exerciseOptions = useMemo(() => {
     return [...new Set(prs.map((item) => item.exercise).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   }, [prs]);
@@ -85,17 +114,6 @@ export default function ProfilePage() {
   const firstChartPoint = chartData[0];
   const lastChartPoint = chartData[chartData.length - 1];
   const loadEvolution = firstChartPoint && lastChartPoint ? Number(lastChartPoint.weight) - Number(firstChartPoint.weight) : 0;
-  const bodyMeasurePoints = [
-    { key: 'chest', label: 'Peito/Torax', x: 50, y: 27 },
-    { key: 'waist', label: 'Cintura', x: 50, y: 42 },
-    { key: 'abdomen', label: 'Abdomen', x: 50, y: 36 },
-    { key: 'hip', label: 'Quadril', x: 50, y: 50 },
-    { key: 'arm', label: 'Braco', x: 28, y: 35 },
-    { key: 'forearm', label: 'Antebraco', x: 21, y: 49 },
-    { key: 'thigh', label: 'Coxa', x: 43, y: 66 },
-    { key: 'calf', label: 'Panturrilha', x: 58, y: 84 },
-  ];
-
   const formatDate = (date) => {
     return new Date(`${date}T00:00:00`).toLocaleDateString('pt-BR');
   };
@@ -140,19 +158,35 @@ export default function ProfilePage() {
         <p>Este espaco substitui a antiga pagina em PHP e mantem os dados principais de forma simples no navegador.</p>
       </section>
 
-      <section className="profile-top">
-        <article className="profile-summary">
-          <h2>{user.name}</h2>
-          <p>{user.email}</p>
-          <div className="badge-row">
-            <span className="soft-badge">Plano atual: {selectedPlan}</span>
-            <span className="soft-badge">IMC: {bmi ?? '--'}</span>
-            <span className="soft-badge">Objetivo: {profile.goal}</span>
-          </div>
-          <Link to={`/planos/${selectedPlan}`} className="inline-link">Abrir plano selecionado</Link>
-        </article>
-
-        
+      <section className="body-front-section" aria-label="Mapa muscular frontal">
+        <div className="body-front-map">
+          <img src={fullBodyFront} alt="Corpo humano visto de frente" />
+          {muscleHotspots.map((hotspot) => (
+            <button
+              key={hotspot.id}
+              type="button"
+              className="muscle-hotspot"
+              style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
+              aria-label={hotspot.label}
+            >
+              <span className="muscle-tooltip">{hotspot.label}</span>
+            </button>
+          ))}
+        </div>
+        <div className='body-back-map'>
+          <img src={back} alt="Corpo humano visto de costas" />
+          {backMuscleHotspots.map((hotspot) => (
+            <button
+              key={hotspot.id}
+              type="button"
+              className="muscle-hotspot"
+              style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
+              aria-label={hotspot.label}
+            >
+              <span className="muscle-tooltip">{hotspot.label}</span>
+            </button>
+          ))}
+        </div>
       </section>
 
       <section className="profile-grid">

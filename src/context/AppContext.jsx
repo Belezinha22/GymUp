@@ -6,7 +6,6 @@ const AppContext = createContext(null);
 const storageKeys = {
   user: 'gymup:user',
   selectedPlan: 'gymup:selectedPlan',
-  messages: 'gymup:messages',
   prs: 'gymup:prs',
   history: 'gymup:history',
   notes: 'gymup:notes',
@@ -32,7 +31,6 @@ function readStorage(key, fallback) {
 export function AppProvider({ children }) {
   const [user, setUser] = useState(() => readStorage(storageKeys.user, null));
   const [selectedPlan, setSelectedPlan] = useState(() => readStorage(storageKeys.selectedPlan, 'iniciantes'));
-  const [messages, setMessages] = useState(() => readStorage(storageKeys.messages, []));
   const [prs, setPrs] = useState(() => readStorage(storageKeys.prs, [
     { id: 1, exercise: 'Supino reto', weight: 80, date: '2026-04-02' },
     { id: 2, exercise: 'Agachamento goblet', weight: 28, date: '2026-04-06' },
@@ -46,7 +44,6 @@ export function AppProvider({ children }) {
 
   useEffect(() => localStorage.setItem(storageKeys.user, JSON.stringify(user)), [user]);
   useEffect(() => localStorage.setItem(storageKeys.selectedPlan, JSON.stringify(selectedPlan)), [selectedPlan]);
-  useEffect(() => localStorage.setItem(storageKeys.messages, JSON.stringify(messages)), [messages]);
   useEffect(() => localStorage.setItem(storageKeys.prs, JSON.stringify(prs)), [prs]);
   useEffect(() => localStorage.setItem(storageKeys.history, JSON.stringify(history)), [history]);
   useEffect(() => localStorage.setItem(storageKeys.notes, JSON.stringify(notes)), [notes]);
@@ -69,7 +66,6 @@ export function AppProvider({ children }) {
     const plan = plans.find((item) => item.slug === slug);
     if (plan && user) setUser((current) => ({ ...current, goal: plan.label }));
   };
-  const saveMessage = (payload) => setMessages((current) => [{ id: Date.now(), ...payload }, ...current]);
   const addPr = (payload) => setPrs((current) => [{ id: Date.now(), ...payload }, ...current]);
   const addHistory = (payload) => setHistory((current) => [...current, { id: Date.now(), ...payload }]);
   const saveExerciseNote = (exerciseName, content) => setNotes((current) => ({ ...current, [exerciseName]: content }));
@@ -82,7 +78,6 @@ export function AppProvider({ children }) {
       value={{
         user,
         selectedPlan,
-        messages,
         prs,
         history,
         notes,
@@ -92,7 +87,6 @@ export function AppProvider({ children }) {
         logout,
         updateProfile,
         choosePlan,
-        saveMessage,
         addPr,
         addHistory,
         saveExerciseNote,
