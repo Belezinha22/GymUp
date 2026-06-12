@@ -6,7 +6,7 @@ const navigation = [
   { to: '/', label: 'Inicio' },
   { to: '/metas', label: 'Metas' },
   { to: '/sobre', label: 'Sobre' },
-  { to: '/contato', label: 'Contato' },
+  { to: '/configuracoes', label: 'Configuracoes' },
 ];
 
 export default function Layout({ children }) {
@@ -49,7 +49,7 @@ export default function Layout({ children }) {
         </div>
         <div>
           <h4>Rotas principais</h4>
-          <p>Inicio, metas, planos, perfil, contato e sobre.</p>
+          <p>Inicio, metas, planos, perfil, configuracoes e sobre.</p>
         </div>
         <div>
           <h4>Estado atual</h4>

@@ -3,11 +3,11 @@ import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import AboutPage from './pages/AboutPage';
 import AuthPage from './pages/AuthPage';
-import ContactPage from './pages/ContactPage';
 import GoalsPage from './pages/GoalsPage';
 import HomePage from './pages/HomePage';
 import PlanPage from './pages/PlanPage';
 import ProfilePage from './pages/ProfilePage';
+import SettingsPage from './pages/SettingsPage';
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
         <Route path="/metas" element={<GoalsPage />} />
         <Route path="/planos/:slug" element={<PlanPage />} />
         <Route path="/sobre" element={<AboutPage />} />
-        <Route path="/contato" element={<ContactPage />} />
+        <Route path="/configuracoes" element={<SettingsPage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route
           path="/perfil"

@@ -171,7 +171,6 @@ h4 {
 .hero-panel,
 .plan-hero,
 .auth-panel,
-.contact-grid,
 .profile-top,
 .profile-grid,
 .tables-grid,
@@ -198,7 +197,6 @@ h4 {
 .auth-card,
 .profile-summary,
 .table-card,
-.contact-form-card,
 .stat-card {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -230,7 +228,6 @@ h4 {
 .auth-card,
 .profile-summary,
 .table-card,
-.contact-form-card,
 .timeline-card,
 .stat-card {
   padding: 1.6rem;
@@ -259,6 +256,84 @@ h4 {
 
 .page-header {
   padding: 1rem 0 1.8rem;
+}
+
+.body-front-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.body-front-map {
+  position: relative;
+  width: min(100%, 420px);
+}
+
+.body-back-map {
+  position: relative;
+  width: 600px;
+  max-width: 100%;
+  transform: translateY(-20px);
+}
+
+.body-front-map img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.body-back-map img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.muscle-hotspot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 6px rgba(0, 230, 118, 0.22);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  padding: 0;
+}
+
+.muscle-hotspot:hover,
+.muscle-hotspot:focus-visible {
+  outline: none;
+  background: var(--accent);
+  box-shadow: 0 0 0 8px rgba(255, 112, 67, 0.22);
+}
+
+.muscle-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+  min-width: max-content;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  background: var(--bg-strong);
+  color: var(--text);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.muscle-hotspot:hover .muscle-tooltip,
+.muscle-hotspot:focus-visible .muscle-tooltip {
+  opacity: 1;
+  transform: translate(-50%, -4px);
 }
 
 .eyebrow {
@@ -703,9 +778,73 @@ h4 {
   font-weight: 700;
 }
 
-.contact-grid,
 .profile-top {
   grid-template-columns: 0.75fr 1.25fr;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings-card .primary-button {
+  align-self: flex-start;
+}
+
+.setting-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.setting-option input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--teal);
+}
+
+.setting-option span,
+.settings-summary span {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.setting-option small {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.settings-summary {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.settings-summary div {
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+
+.settings-summary span {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.settings-summary strong {
+  color: var(--teal);
 }
 
 .profile-grid {
@@ -1005,7 +1144,6 @@ h4 {
   .plan-hero,
   .auth-panel,
   .goal-card,
-  .contact-grid,
   .profile-top,
   .profile-grid,
   .tables-grid,
@@ -1013,6 +1151,7 @@ h4 {
   .plan-grid,
   .info-grid,
   .faq-grid,
+  .settings-grid,
   .site-footer,
   .feature-strip,
   .exercise-meta {
@@ -1085,7 +1224,6 @@ h4 {
   .auth-card,
   .profile-summary,
   .table-card,
-  .contact-form-card,
   .timeline-card,
   .stat-card {
     padding: 1.2rem;
