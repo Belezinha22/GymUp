@@ -152,11 +152,6 @@ export default function ProfilePage() {
 
   return (
     <div className="page">
-      <section className="page-header">
-        <span className="eyebrow">Perfil</span>
-        <h1>Painel pessoal sem banco, com persistencia local.</h1>
-        <p>Este espaco substitui a antiga pagina em PHP e mantem os dados principais de forma simples no navegador.</p>
-      </section>
 
       <section className="body-front-section" aria-label="Mapa muscular frontal">
         <div className="body-front-map">
