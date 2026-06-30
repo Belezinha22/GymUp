@@ -171,6 +171,7 @@ h4 {
 .hero-panel,
 .plan-hero,
 .auth-panel,
+.onboarding-panel,
 .profile-top,
 .profile-grid,
 .tables-grid,
@@ -184,7 +185,8 @@ h4 {
 
 .hero-panel,
 .plan-hero,
-.auth-panel {
+.auth-panel,
+.onboarding-panel {
   grid-template-columns: 1.1fr 0.9fr;
   align-items: stretch;
 }
@@ -195,6 +197,7 @@ h4 {
 .goal-card,
 .info-card,
 .auth-card,
+.onboarding-panel,
 .profile-summary,
 .table-card,
 .stat-card {
@@ -226,6 +229,7 @@ h4 {
 .info-card,
 .auth-copy,
 .auth-card,
+.onboarding-copy,
 .profile-summary,
 .table-card,
 .timeline-card,
@@ -355,6 +359,65 @@ h4 {
   color: var(--muted);
   line-height: 1.7;
   max-width: 62ch;
+}
+
+.onboarding-page {
+  min-height: 70vh;
+  display: grid;
+  align-items: center;
+}
+
+.onboarding-panel {
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 112, 67, 0.10), rgba(0, 230, 118, 0.08)),
+    var(--surface);
+}
+
+.onboarding-copy h1 {
+  font-size: clamp(2.2rem, 4vw, 4.25rem);
+  line-height: 0.97;
+  margin: 0.3rem 0 1rem;
+}
+
+.onboarding-copy p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.onboarding-card h2 {
+  margin-top: 0;
+}
+
+.recommendation-preview,
+.profile-recommendation {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1.2rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+}
+
+.recommendation-preview span,
+.profile-recommendation span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.recommendation-preview strong,
+.profile-recommendation strong {
+  color: var(--teal);
+  font-size: 1.35rem;
+}
+
+.recommendation-preview p,
+.profile-recommendation p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 .hero-actions,
@@ -1143,6 +1206,7 @@ h4 {
   .hero-panel,
   .plan-hero,
   .auth-panel,
+  .onboarding-panel,
   .goal-card,
   .profile-top,
   .profile-grid,

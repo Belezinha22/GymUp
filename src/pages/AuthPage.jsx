@@ -10,7 +10,6 @@ const registerForm = {
   age: 18,
   weight: 70,
   height: 1.7,
-  goal: 'Hipertrofia',
 };
 
 export default function AuthPage() {
@@ -100,15 +99,6 @@ export default function AuthPage() {
               <label className="field">
                 <span>Altura</span>
                 <input type="number" step="0.01" value={registerData.height} onChange={(e) => setRegisterData((current) => ({ ...current, height: Number(e.target.value) }))} />
-              </label>
-              <label className="field">
-                <span>Objetivo</span>
-                <select value={registerData.goal} onChange={(e) => setRegisterData((current) => ({ ...current, goal: e.target.value }))}>
-                  <option>Hipertrofia</option>
-                  <option>Emagrecimento</option>
-                  <option>Condicionamento</option>
-                  <option>Bem-estar</option>
-                </select>
               </label>
             </div>
             <button type="submit" className="primary-button">Criar perfil</button>

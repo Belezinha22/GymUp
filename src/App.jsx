@@ -5,30 +5,38 @@ import AboutPage from './pages/AboutPage';
 import AuthPage from './pages/AuthPage';
 import GoalsPage from './pages/GoalsPage';
 import HomePage from './pages/HomePage';
+import OnboardingPage from './pages/OnboardingPage';
 import PlanPage from './pages/PlanPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
+import { useApp } from './context/AppContext';
 
 export default function App() {
+  const { user } = useApp();
+
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/metas" element={<GoalsPage />} />
-        <Route path="/planos/:slug" element={<PlanPage />} />
-        <Route path="/sobre" element={<AboutPage />} />
-        <Route path="/configuracoes" element={<SettingsPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route
-          path="/perfil"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      {user?.onboardingCompleted === false ? (
+        <OnboardingPage />
+      ) : (
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/metas" element={<GoalsPage />} />
+          <Route path="/planos/:slug" element={<PlanPage />} />
+          <Route path="/sobre" element={<AboutPage />} />
+          <Route path="/configuracoes" element={<SettingsPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route
+            path="/perfil"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      )}
     </Layout>
   );
 }

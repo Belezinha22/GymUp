@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { plans } from '../data/plans';
+import { recommendPlan } from '../services/planRecommendation';
 
 const AppContext = createContext(null);
 
@@ -21,6 +22,11 @@ const defaultUser = {
   height: 1.75,
   bodyFat: 18,
   goal: 'Hipertrofia',
+  trainingGoalSlug: 'hipertrofia',
+  experienceLevel: 'intermediario',
+  desiredFrequency: 5,
+  recommendedPlanSlug: 'hipertrofia',
+  onboardingCompleted: true,
 };
 
 function readStorage(key, fallback) {
@@ -58,9 +64,29 @@ export function AppProvider({ children }) {
     return { ok: false, message: 'Email ou senha invalidos.' };
   };
 
-  const register = (payload) => setUser({ ...payload });
+  const register = (payload) => setUser({
+    ...payload,
+    trainingGoalSlug: '',
+    experienceLevel: '',
+    desiredFrequency: 3,
+    recommendedPlanSlug: '',
+    onboardingCompleted: false,
+  });
   const logout = () => setUser(null);
   const updateProfile = (payload) => setUser((current) => ({ ...current, ...payload }));
+  const completeOnboarding = (payload) => {
+    const recommendation = recommendPlan(payload);
+    const plan = plans.find((item) => item.slug === recommendation.slug);
+
+    setUser((current) => ({
+      ...current,
+      ...payload,
+      goal: plan?.label ?? current?.goal,
+      recommendedPlanSlug: recommendation.slug,
+      onboardingCompleted: true,
+    }));
+    setSelectedPlan(recommendation.slug);
+  };
   const choosePlan = (slug) => {
     setSelectedPlan(slug);
     const plan = plans.find((item) => item.slug === slug);
@@ -86,6 +112,7 @@ export function AppProvider({ children }) {
         register,
         logout,
         updateProfile,
+        completeOnboarding,
         choosePlan,
         addPr,
         addHistory,
