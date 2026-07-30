@@ -136,25 +136,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="stats-grid">
-        <article className="stat-card">
-          <span>Arquitetura</span>
-          <strong>React + Vite</strong>
-          <p>Rotas client-side e organizacao por componentes.</p>
-        </article>
-        <article className="stat-card">
-          <span>Persistencia</span>
-          <strong>localStorage</strong>
-          <p>Sem banco por enquanto, mas com experiencia funcional.</p>
-        </article>
-        <article className="stat-card">
-          <span>Conteudo</span>
-          <strong>Planos e perfil</strong>
-          <p>Metas, PRs, historico corporal e paginas institucionais.</p>
-        </article>
-      </section>
-
-     
     </div>
   );
 }

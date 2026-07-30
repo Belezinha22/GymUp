@@ -1,35 +1,15 @@
 import { useMemo, useState } from 'react';
 import { useApp } from '../context/AppContext';
-import fullBodyFront from '../assets/images/bodyParts/fullBodyFront.png';
-import back from '../assets/images/bodyParts/back.png';
 
-const muscleHotspots = [
-  { id: 'biceps-left', label: 'Biceps esquerdo', x: 33, y: 31 },
-  { id: 'biceps-right', label: 'Biceps direito', x: 67, y: 31 },
-  { id: 'forearm-left', label: 'Antebraco esquerdo', x: 25, y: 44 },
-  { id: 'forearm-right', label: 'Antebraco direito', x: 75, y: 44 },
-  { id: 'thigh-left', label: 'Coxa esquerda', x: 43, y: 61 },
-  { id: 'thigh-right', label: 'Coxa direita', x: 57, y: 61 },
-  { id: 'calf-left', label: 'Panturrilha esquerda', x: 43, y: 79 },
-  { id: 'calf-right', label: 'Panturrilha direita', x: 57, y: 79 },
-];
-
-const backMuscleHotspots = [
-  { id: 'trapezius-left', label: 'Trapezio esquerdo', x: 44, y: 22 },
-  { id: 'trapezius-right', label: 'Trapezio direito', x: 56, y: 22 },
-  { id: 'rear-deltoid-left', label: 'Deltoide posterior esquerdo', x: 32, y: 30 },
-  { id: 'rear-deltoid-right', label: 'Deltoide posterior direito', x: 68, y: 30 },
-  { id: 'triceps-back-left', label: 'Triceps esquerdo', x: 27, y: 40 },
-  { id: 'triceps-back-right', label: 'Triceps direito', x: 73, y: 40 },
-  { id: 'lat-left', label: 'Dorsal esquerdo', x: 39, y: 39 },
-  { id: 'lat-right', label: 'Dorsal direito', x: 61, y: 39 },
-  { id: 'lower-back', label: 'Lombar', x: 50, y: 49 },
-  { id: 'glute-left', label: 'Gluteo esquerdo', x: 43, y: 60 },
-  { id: 'glute-right', label: 'Gluteo direito', x: 57, y: 60 },
-  { id: 'hamstring-left', label: 'Posterior de coxa esquerdo', x: 43, y: 72 },
-  { id: 'hamstring-right', label: 'Posterior de coxa direito', x: 57, y: 72 },
-  { id: 'calf-back-left', label: 'Panturrilha esquerda', x: 43, y: 84 },
-  { id: 'calf-back-right', label: 'Panturrilha direita', x: 57, y: 84 },
+const bodyMetrics = [
+  { key: 'chest', label: 'Peito' },
+  { key: 'waist', label: 'Cintura' },
+  { key: 'abdomen', label: 'Abdomen' },
+  { key: 'hip', label: 'Quadril' },
+  { key: 'arm', label: 'Braco' },
+  { key: 'forearm', label: 'Antebraco' },
+  { key: 'thigh', label: 'Coxa' },
+  { key: 'calf', label: 'Panturrilha' },
 ];
 
 export default function ProfilePage() {
@@ -117,6 +97,25 @@ export default function ProfilePage() {
   const formatDate = (date) => {
     return new Date(`${date}T00:00:00`).toLocaleDateString('pt-BR');
   };
+  const bestPr = useMemo(() => {
+    if (!prs.length) return null;
+    return prs.reduce((best, item) => (Number(item.weight) > Number(best.weight) ? item : best));
+  }, [prs]);
+  const averagePrWeight = useMemo(() => {
+    if (!prs.length) return null;
+    const totalWeight = prs.reduce((total, item) => total + Number(item.weight || 0), 0);
+    return (totalWeight / prs.length).toFixed(1);
+  }, [prs]);
+  const latestHistory = history[history.length - 1];
+  const latestBodyMetrics = latestHistory
+    ? bodyMetrics.filter((metric) => latestHistory[metric.key] !== undefined && latestHistory[metric.key] !== null)
+    : [];
+  const biInsights = [
+    bestPr ? `Maior carga registrada: ${bestPr.exercise} com ${bestPr.weight} kg.` : 'Registre cargas nos exercicios para liberar analises de desempenho.',
+    chartData.length > 1 ? `No grafico atual, ${selectedChartExercise} variou ${loadEvolution >= 0 ? '+' : ''}${loadEvolution} kg no periodo exibido.` : 'Escolha um exercicio com mais registros para visualizar a evolucao de carga.',
+    bmi ? `O IMC calculado no perfil e ${bmi}, usando peso e altura cadastrados.` : 'Complete peso e altura para calcular indicadores corporais.',
+    latestHistory ? `Ultimo registro corporal salvo em ${formatDate(latestHistory.date)}.` : 'Registre medidas corporais para alimentar o dashboard.',
+  ];
 
   const saveProfile = (event) => {
     event.preventDefault();
@@ -152,34 +151,51 @@ export default function ProfilePage() {
 
   return (
     <div className="page">
-
-      <section className="body-front-section" aria-label="Mapa muscular frontal">
-        <div className="body-front-map">
-          <img src={fullBodyFront} alt="Corpo humano visto de frente" />
-          {muscleHotspots.map((hotspot) => (
-            <button
-              key={hotspot.id}
-              type="button"
-              className="muscle-hotspot"
-              style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-              aria-label={hotspot.label}
-            >
-              <span className="muscle-tooltip">{hotspot.label}</span>
-            </button>
-          ))}
+      <section className="bi-dashboard">
+        <div className="workout-panel-header">
+          <div>
+            <span className="eyebrow">BI e Big Data</span>
+            <h2>Analise do perfil</h2>
+          </div>
+          <span className="plan-frequency">Dados locais do usuario</span>
         </div>
-        <div className='body-back-map'>
-          <img src={back} alt="Corpo humano visto de costas" />
-          {backMuscleHotspots.map((hotspot) => (
-            <button
-              key={hotspot.id}
-              type="button"
-              className="muscle-hotspot"
-              style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-              aria-label={hotspot.label}
-            >
-              <span className="muscle-tooltip">{hotspot.label}</span>
-            </button>
+
+        <div className="bi-grid">
+          <article className="bi-card">
+            <span>Maior carga</span>
+            <strong>{bestPr ? `${bestPr.weight} kg` : '--'}</strong>
+            <p>{bestPr ? bestPr.exercise : 'Sem carga registrada.'}</p>
+          </article>
+          <article className="bi-card">
+            <span>Evolucao no grafico</span>
+            <strong>{chartData.length > 1 ? `${loadEvolution >= 0 ? '+' : ''}${loadEvolution} kg` : '--'}</strong>
+            <p>{selectedChartExercise || 'Selecione um exercicio.'}</p>
+          </article>
+          <article className="bi-card">
+            <span>Carga media</span>
+            <strong>{averagePrWeight ? `${averagePrWeight} kg` : '--'}</strong>
+            <p>Media dos registros de carga salvos.</p>
+          </article>
+          <article className="bi-card">
+            <span>IMC atual</span>
+            <strong>{bmi ?? '--'}</strong>
+            <p>Calculado com peso e altura do perfil.</p>
+          </article>
+          <article className="bi-card">
+            <span>Objetivo atual</span>
+            <strong>{profile.goal || 'Nao informado'}</strong>
+            <p>Base para a recomendacao de treino.</p>
+          </article>
+          <article className="bi-card">
+            <span>Medidas recentes</span>
+            <strong>{latestHistory ? formatDate(latestHistory.date) : '--'}</strong>
+            <p>{latestHistory ? `${latestBodyMetrics.length} campos corporais salvos.` : 'Sem historico corporal.'}</p>
+          </article>
+        </div>
+
+        <div className="insight-list">
+          {biInsights.map((insight) => (
+            <p key={insight}>{insight}</p>
           ))}
         </div>
       </section>
