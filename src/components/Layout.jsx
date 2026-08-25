@@ -3,10 +3,10 @@ import { useApp } from '../context/AppContext';
 import logo from '../assets/images/logo/Logo-removebg-preview.png';
 
 const navigation = [
-  { to: '/', label: 'Inicio' },
+  { to: '/', label: 'Início' },
   { to: '/metas', label: 'Metas' },
   { to: '/sobre', label: 'Sobre' },
-  { to: '/configuracoes', label: 'Configuracoes' },
+  { to: '/configuracoes', label: 'Configurações' },
 ];
 
 export default function Layout({ children }) {
@@ -45,15 +45,15 @@ export default function Layout({ children }) {
       <footer className="site-footer">
         <div>
           <h3>GymUp</h3>
-          <p>Projeto migrado para React sem dependencia de PHP ou banco.</p>
+          <p>Projeto migrado para React sem dependência de PHP ou banco.</p>
         </div>
         <div>
           <h4>Rotas principais</h4>
-          <p>Inicio, metas, planos, perfil, configuracoes e sobre.</p>
+          <p>Início, metas, planos, perfil, configurações e sobre.</p>
         </div>
         <div>
           <h4>Estado atual</h4>
-          <p>Dados persistidos localmente com localStorage para facilitar a evolucao futura.</p>
+          <p>Dados persistidos localmente com localStorage para facilitar a evolução futura.</p>
         </div>
       </footer>
     </div>

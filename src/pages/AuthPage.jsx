@@ -48,7 +48,7 @@ export default function AuthPage() {
           <span className="eyebrow">Acesso</span>
           <h1>Entre para acompanhar sua jornada ou crie um perfil local.</h1>
           <p>
-            Como esta versao nao usa banco, os dados ficam salvos no seu navegador. Para testar rapido, use
+            Como esta versão não usa banco, os dados ficam salvos no seu navegador. Para testar rápido, use
             `demo@gymup.com` e `123456`.
           </p>
           <div className="auth-switcher">

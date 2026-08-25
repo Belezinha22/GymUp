@@ -23,8 +23,8 @@ export default function HomePage() {
         style={{ '--hero-panel-image': `url(${featuredPlan.heroImage})` }}
       >
         <div className="hero-copy">
-          <span className="eyebrow">Treino, constancia e clareza</span>
-          <h1>Transforme o antigo GymUp em uma experiencia React pronta para evoluir.</h1>
+          <span className="eyebrow">Treino, constância e clareza</span>
+          <h1>Transforme o antigo GymUp em uma experiência React pronta para evoluir.</h1>
           <p>
             Esta nova base remove PHP do frontend, organiza o projeto como SPA e deixa o caminho aberto
             para conectar qualquer backend depois.
@@ -49,21 +49,21 @@ export default function HomePage() {
           <h2>Voltamos com a atmosfera original do GymUp.</h2>
           <p>
             Reforcei o visual escuro com verde e laranja, mantive a proposta fitness original
-            e reintroduzi a navegacao em destaque para os objetivos do projeto.
+            e reintroduzi a navegação em destaque para os objetivos do projeto.
           </p>
         </div>
         <div className="feature-strip">
           <article className="legacy-feature-card">
             <strong>Equipamentos premium</strong>
-            <p>Treinos guiados com foco em execucao correta e progressao consistente.</p>
+            <p>Treinos guiados com foco em execução correta e progressão consistente.</p>
           </article>
           <article className="legacy-feature-card">
             <strong>Resultados comprovados</strong>
-            <p>Planos pensados para iniciantes, hipertrofia, definicao e condicionamento.</p>
+            <p>Planos pensados para iniciantes, hipertrofia, definição e condicionamento.</p>
           </article>
           <article className="legacy-feature-card">
-            <strong>Seguranca em primeiro lugar</strong>
-            <p>Videos, observacoes e anotacoes por exercicio em um unico fluxo.</p>
+            <strong>Segurança em primeiro lugar</strong>
+            <p>Videos, observações e anotacoes por exercício em um único fluxo.</p>
           </article>
         </div>
       </section>
@@ -72,7 +72,7 @@ export default function HomePage() {
         <div className="section-copy">
           <span className="eyebrow">Metas</span>
           <h2>Carrossel de planos restaurado</h2>
-          <p>Agora a home volta a ter destaque visual para os objetivos, com avancar, voltar e autoplay.</p>
+          <p>Agora a home volta a ter destaque visual para os objetivos, com avançar, voltar e autoplay.</p>
         </div>
 
         <div className="carousel-shell">

@@ -11,7 +11,7 @@ export default function GoalsPage() {
         <span className="eyebrow">Metas</span>
         <h1>Escolha um plano e personalize a sua jornada.</h1>
         <p>
-          Cada trilha foi mantida a partir do projeto original, mas agora com navegacao React e estado local
+          Cada trilha foi mantida a partir do projeto original, mas agora com navegação React e estado local
           persistido no navegador.
         </p>
       </section>

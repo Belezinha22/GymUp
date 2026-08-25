@@ -4,10 +4,10 @@ import { useApp } from '../context/AppContext';
 const bodyMetrics = [
   { key: 'chest', label: 'Peito' },
   { key: 'waist', label: 'Cintura' },
-  { key: 'abdomen', label: 'Abdomen' },
+  { key: 'abdomen', label: 'Abdômen' },
   { key: 'hip', label: 'Quadril' },
-  { key: 'arm', label: 'Braco' },
-  { key: 'forearm', label: 'Antebraco' },
+  { key: 'arm', label: 'Braço' },
+  { key: 'forearm', label: 'Antebraço' },
   { key: 'thigh', label: 'Coxa' },
   { key: 'calf', label: 'Panturrilha' },
 ];
@@ -111,10 +111,10 @@ export default function ProfilePage() {
     ? bodyMetrics.filter((metric) => latestHistory[metric.key] !== undefined && latestHistory[metric.key] !== null)
     : [];
   const biInsights = [
-    bestPr ? `Maior carga registrada: ${bestPr.exercise} com ${bestPr.weight} kg.` : 'Registre cargas nos exercicios para liberar analises de desempenho.',
-    chartData.length > 1 ? `No grafico atual, ${selectedChartExercise} variou ${loadEvolution >= 0 ? '+' : ''}${loadEvolution} kg no periodo exibido.` : 'Escolha um exercicio com mais registros para visualizar a evolucao de carga.',
-    bmi ? `O IMC calculado no perfil e ${bmi}, usando peso e altura cadastrados.` : 'Complete peso e altura para calcular indicadores corporais.',
-    latestHistory ? `Ultimo registro corporal salvo em ${formatDate(latestHistory.date)}.` : 'Registre medidas corporais para alimentar o dashboard.',
+    bestPr ? `Maior carga registrada: ${bestPr.exercise} com ${bestPr.weight} kg.` : 'Registre cargas nos exercícios para liberar análises de desempenho.',
+    chartData.length > 1 ? `No gráfico atual, ${selectedChartExercise} variou ${loadEvolution >= 0 ? '+' : ''}${loadEvolution} kg no período exibido.` : 'Escolha um exercício com mais registros para visualizar a evolução de carga.',
+    bmi ? `O IMC calculado no perfil e ${bmi}, usando péso e altura cadastrados.` : 'Complete péso e altura para calcular indicadores corporais.',
+    latestHistory ? `Último registro corporal salvo em ${formatDate(latestHistory.date)}.` : 'Registre medidas corporais para alimentar o dashboard.',
   ];
 
   const saveProfile = (event) => {
@@ -155,9 +155,9 @@ export default function ProfilePage() {
         <div className="workout-panel-header">
           <div>
             <span className="eyebrow">BI e Big Data</span>
-            <h2>Analise do perfil</h2>
+            <h2>Análise do perfil</h2>
           </div>
-          <span className="plan-frequency">Dados locais do usuario</span>
+          <span className="plan-frequency">Dados locais do usuário</span>
         </div>
 
         <div className="bi-grid">
@@ -167,29 +167,29 @@ export default function ProfilePage() {
             <p>{bestPr ? bestPr.exercise : 'Sem carga registrada.'}</p>
           </article>
           <article className="bi-card">
-            <span>Evolucao no grafico</span>
+            <span>Evolução no gráfico</span>
             <strong>{chartData.length > 1 ? `${loadEvolution >= 0 ? '+' : ''}${loadEvolution} kg` : '--'}</strong>
-            <p>{selectedChartExercise || 'Selecione um exercicio.'}</p>
+            <p>{selectedChartExercise || 'Selecione um exercício.'}</p>
           </article>
           <article className="bi-card">
-            <span>Carga media</span>
+            <span>Carga média</span>
             <strong>{averagePrWeight ? `${averagePrWeight} kg` : '--'}</strong>
-            <p>Media dos registros de carga salvos.</p>
+            <p>Média dos registros de carga salvos.</p>
           </article>
           <article className="bi-card">
             <span>IMC atual</span>
             <strong>{bmi ?? '--'}</strong>
-            <p>Calculado com peso e altura do perfil.</p>
+            <p>Calculado com péso e altura do perfil.</p>
           </article>
           <article className="bi-card">
             <span>Objetivo atual</span>
-            <strong>{profile.goal || 'Nao informado'}</strong>
-            <p>Base para a recomendacao de treino.</p>
+            <strong>{profile.goal || 'Não informado'}</strong>
+            <p>Base para a recomendação de treino.</p>
           </article>
           <article className="bi-card">
             <span>Medidas recentes</span>
             <strong>{latestHistory ? formatDate(latestHistory.date) : '--'}</strong>
-            <p>{latestHistory ? `${latestBodyMetrics.length} campos corporais salvos.` : 'Sem historico corporal.'}</p>
+            <p>{latestHistory ? `${latestBodyMetrics.length} campos corporais salvos.` : 'Sem histórico corporal.'}</p>
           </article>
         </div>
 
@@ -244,7 +244,7 @@ export default function ProfilePage() {
               <input type="number" step="0.1" value={historyForm.waist} onChange={(e) => setHistoryForm((c) => ({ ...c, waist: e.target.value }))} required />
             </label>
             <label className="field">
-              <span>Abdomen (cm)</span>
+              <span>Abdômen (cm)</span>
               <input type="number" step="0.1" value={historyForm.abdomen} onChange={(e) => setHistoryForm((c) => ({ ...c, abdomen: e.target.value }))} required />
             </label>
             <label className="field">
@@ -252,11 +252,11 @@ export default function ProfilePage() {
               <input type="number" step="0.1" value={historyForm.hip} onChange={(e) => setHistoryForm((c) => ({ ...c, hip: e.target.value }))} required />
             </label>
             <label className="field">
-              <span>Braco (cm)</span>
+              <span>Braço (cm)</span>
               <input type="number" step="0.1" value={historyForm.arm} onChange={(e) => setHistoryForm((c) => ({ ...c, arm: e.target.value }))} required />
             </label>
             <label className="field">
-              <span>Antebraco (cm)</span>
+              <span>Antebraço (cm)</span>
               <input type="number" step="0.1" value={historyForm.forearm} onChange={(e) => setHistoryForm((c) => ({ ...c, forearm: e.target.value }))} required />
             </label>
             <label className="field">
@@ -275,8 +275,8 @@ export default function ProfilePage() {
       <section className="chart-panel">
         <div className="workout-panel-header">
           <div>
-            <span className="eyebrow">Evolucao de carga</span>
-            <h2>Grafico por exercicio</h2>
+            <span className="eyebrow">Evolução de carga</span>
+            <h2>Grafico por exercício</h2>
           </div>
           <div className="chart-controls">
             <select value={selectedChartExercise} onChange={(event) => setChartExercise(event.target.value)}>
@@ -287,7 +287,7 @@ export default function ProfilePage() {
                   </option>
                 ))
               ) : (
-                <option value="">Sem exercicios</option>
+                <option value="">Sem exercícios</option>
               )}
             </select>
             
@@ -304,10 +304,10 @@ export default function ProfilePage() {
                 Maior carga: <strong>{chartModel.maxWeight} kg</strong>
               </span>
               <span>
-                Evolucao: <strong>{loadEvolution >= 0 ? '+' : ''}{loadEvolution} kg</strong>
+                Evolução: <strong>{loadEvolution >= 0 ? '+' : ''}{loadEvolution} kg</strong>
               </span>
             </div>
-            <div className="load-chart" aria-label={`Evolucao de carga em ${selectedChartExercise}`}>
+            <div className="load-chart" aria-label={`Evolução de carga em ${selectedChartExercise}`}>
               <svg viewBox={`0 0 ${chartModel.width} ${chartModel.height}`} role="img">
                 {chartModel.gridLines.map((line) => (
                   <line
@@ -365,13 +365,13 @@ export default function ProfilePage() {
             </div>
           </>
         ) : (
-          <p className="muted-text">Registre cargas em Adicionar PR para visualizar a evolucao por periodo.</p>
+          <p className="muted-text">Registre cargas em Adicionar PR para visualizar a evolução por período.</p>
         )}
       </section>
 
       <section className="tables-grid">
         <article className="table-card">
-          <h3>Ultimos PRs</h3>
+          <h3>Últimos PRs</h3>
           <div className="simple-table">
             {prs.map((item) => (
               <div key={item.id} className="simple-table-row">
@@ -391,10 +391,10 @@ export default function ProfilePage() {
                 <span>{item.date}</span>
                 <span>Peito {item.chest ?? '--'} cm</span>
                 <span>Cintura {item.waist ?? '--'} cm</span>
-                <span>Abdomen {item.abdomen ?? '--'} cm</span>
+                <span>Abdômen {item.abdomen ?? '--'} cm</span>
                 <span>Quadril {item.hip ?? '--'} cm</span>
-                <span>Braco {item.arm ?? '--'} cm</span>
-                <span>Antebraco {item.forearm ?? '--'} cm</span>
+                <span>Braço {item.arm ?? '--'} cm</span>
+                <span>Antebraço {item.forearm ?? '--'} cm</span>
                 <span>Coxa {item.thigh ?? '--'} cm</span>
                 <span>Panturrilha {item.calf ?? '--'} cm</span>
               </div>

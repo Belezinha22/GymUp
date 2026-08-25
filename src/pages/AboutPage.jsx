@@ -6,7 +6,7 @@ export default function AboutPage() {
         <h1>Uma base mais moderna para o GymUp continuar evoluindo.</h1>
         <p>
           O projeto antigo foi reinterpretado como SPA em React, mantendo a identidade fitness e removendo a
-          dependencia do fluxo em PHP.
+          dependência do fluxo em PHP.
         </p>
       </section>
 
@@ -17,11 +17,11 @@ export default function AboutPage() {
         </article>
         <article className="info-card">
           <h3>O que foi mantido</h3>
-          <p>Metas, trilhas de treino, identidade visual e os assets de imagem e video do projeto original.</p>
+          <p>Metas, trilhas de treino, identidade visual e os assets de imagem e vídeo do projeto original.</p>
         </article>
         <article className="info-card">
-          <h3>Proximo passo natural</h3>
-          <p>Conectar um backend em Node, FastAPI ou outra stack quando voce quiser reintroduzir persistencia real.</p>
+          <h3>Próximo passo natural</h3>
+          <p>Conectar um backend em Node, FastAPI ou outra stack quando você quiser reintroduzir persistência real.</p>
         </article>
       </section>
 
@@ -31,9 +31,9 @@ export default function AboutPage() {
           <h2>Do site PHP para uma SPA pronta para APIs</h2>
         </div>
         <ol className="timeline-list">
-          <li>Interface institucional e paginas de plano reunidas em React Router.</li>
-          <li>Perfil, PRs e historico mantidos com localStorage para nao depender de banco.</li>
-          <li>Estrutura pronta para substituir as funcoes locais por chamadas HTTP no futuro.</li>
+          <li>Interface institucional e páginas de plano reunidas em React Router.</li>
+          <li>Perfil, PRs e histórico mantidos com localStorage para não depender de banco.</li>
+          <li>Estrutura pronta para substituir as funções locais por chamadas HTTP no futuro.</li>
         </ol>
       </section>
     </div>

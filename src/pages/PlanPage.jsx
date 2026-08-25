@@ -158,7 +158,7 @@ export default function PlanPage() {
           </ul>
         </article>
         <article className="info-card">
-          <h3>Pos treino</h3>
+          <h3>Pós-treino</h3>
           <ul>
             {plan.recovery.map((item) => (
               <li key={item}>{item}</li>
@@ -171,7 +171,7 @@ export default function PlanPage() {
         <div className="workout-panel-header">
           <div>
             <span className="eyebrow">Plano de treino</span>
-            <h2>Exercicios e detalhes praticos</h2>
+            <h2>Exercicios e detalhes práticos</h2>
           </div>
           <select value={selectedDay} onChange={(event) => setSelectedDay(event.target.value)}>
             {workoutDays.map((day) => (
@@ -186,9 +186,9 @@ export default function PlanPage() {
           <div className="workout-row workout-head">
             <span>Dia</span>
             <span>Exercicio</span>
-            <span>Series</span>
+            <span>Séries</span>
             <span>Descanso</span>
-            <span>Acao</span>
+            <span>Ação</span>
           </div>
           {filteredWorkouts.map((workout) => {
             const exerciseNote = notes[workout.exercise]?.trim();
@@ -230,7 +230,7 @@ export default function PlanPage() {
                 </div>
                 <div className="workout-extra">
                   <span>
-                    <strong>Anotacao:</strong> {exerciseNote || 'Sem anotacao salva.'}
+                    <strong>Anotação:</strong> {exerciseNote || 'Sem anotação salva.'}
                   </span>
                   <span>
                     <strong>PR:</strong>{' '}
@@ -272,11 +272,11 @@ export default function PlanPage() {
                 <strong>{selectedExercise.equipment}</strong>
               </div>
               <div>
-                <span className="meta-label">Musculo principal</span>
+                <span className="meta-label">Músculo principal</span>
                 <strong>{selectedExercise.primaryMuscle}</strong>
               </div>
               <div>
-                <span className="meta-label">Musculo secundario</span>
+                <span className="meta-label">Músculo secundario</span>
                 <strong>{selectedExercise.secondaryMuscle}</strong>
               </div>
               <div>
@@ -285,7 +285,7 @@ export default function PlanPage() {
               </div>
             </div>
             <div className="exercise-steps">
-              <h4>Execucao</h4>
+              <h4>Execução</h4>
               <ul>
                 {(selectedExercise.description ?? []).map((step) => (
                   <li key={step}>{step}</li>
@@ -293,11 +293,11 @@ export default function PlanPage() {
               </ul>
             </div>
             <label className="field">
-              <span>Minha anotacao</span>
+              <span>Minha anotação</span>
               <textarea
                 value={draftNote}
                 onChange={(event) => setDraftNote(event.target.value)}
-                placeholder="Escreva como foi a execucao, carga usada ou algum ajuste."
+                placeholder="Escreva como foi a execução, carga usada ou algum ajuste."
               />
             </label>
             <label className="field">
@@ -315,7 +315,7 @@ export default function PlanPage() {
                 Salvar nota
               </button>
               <span className="muted-text">
-                Ultimos PRs: {prs.slice(0, 3).map((item) => `${item.exercise} ${item.weight}kg`).join(' | ')}
+                Últimos PRs: {prs.slice(0, 3).map((item) => `${item.exercise} ${item.weight}kg`).join(' | ')}
               </span>
             </div>
           </div>

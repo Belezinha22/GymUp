@@ -8,6 +8,13 @@ const defaultSettings = {
   weeklySummary: true,
   compactCards: false,
   defaultUnit: 'kg',
+  language: 'pt-BR',
+};
+
+const languageLabels = {
+  'pt-BR': 'Português',
+  'en-US': 'English',
+  'es-ES': 'Español',
 };
 
 function readSettings() {
@@ -32,22 +39,22 @@ export default function SettingsPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem(storageKey, JSON.stringify(settings));
-    setFeedback('Configuracoes salvas com sucesso.');
+    setFeedback('Configurações salvas com sucesso.');
   };
 
   return (
     <div className="page settings-page">
       <section className="page-header">
-        <span className="eyebrow">Configuracoes</span>
-        <h1>Ajuste como o GymUp organiza sua experiencia.</h1>
+        <span className="eyebrow">Configurações</span>
+        <h1>Ajuste como o GymUp organiza sua experiência.</h1>
         <p>
-          Preferencias salvas localmente no navegador, acompanhando a proposta atual do projeto sem banco de dados.
+          Preferências salvas localmente no navegador, acompanhando a proposta atual do projeto sem banco de dados.
         </p>
       </section>
 
       <section className="settings-grid">
         <form className="info-card settings-card" onSubmit={handleSubmit}>
-          <h3>Preferencias do app</h3>
+          <h3>Preferências do app</h3>
           <label className="setting-option">
             <input
               type="checkbox"
@@ -67,7 +74,7 @@ export default function SettingsPage() {
             />
             <span>
               <strong>Resumo semanal</strong>
-              <small>Destacar evolucao, PRs e medidas recentes no painel.</small>
+              <small>Destacar evolução, PRs e medidas recentes no painel.</small>
             </span>
           </label>
           <label className="setting-option">
@@ -77,13 +84,13 @@ export default function SettingsPage() {
               onChange={(event) => updateSetting('compactCards', event.target.checked)}
             />
             <span>
-              <strong>Cartoes compactos</strong>
-              <small>Reduzir espacamento das areas de treino em telas menores.</small>
+              <strong>Cartões compactos</strong>
+              <small>Reduzir espaçamento das áreas de treino em telas menores.</small>
             </span>
           </label>
 
           <label className="field">
-            <span>Unidade padrao de carga</span>
+            <span>Unidade padrão de carga</span>
             <select
               value={settings.defaultUnit}
               onChange={(event) => updateSetting('defaultUnit', event.target.value)}
@@ -93,7 +100,19 @@ export default function SettingsPage() {
             </select>
           </label>
 
-          <button type="submit" className="primary-button">Salvar configuracoes</button>
+          <label className="field">
+            <span>Línguas</span>
+            <select
+              value={settings.language}
+              onChange={(event) => updateSetting('language', event.target.value)}
+            >
+              <option value="pt-BR">Português</option>
+              <option value="en-US">English</option>
+              <option value="es-ES">Español</option>
+            </select>
+          </label>
+
+          <button type="submit" className="primary-button">Salvar configurações</button>
           {feedback && <p className="success-text">{feedback}</p>}
         </form>
 
@@ -101,7 +120,7 @@ export default function SettingsPage() {
           <h3>Estado atual</h3>
           <div className="settings-summary">
             <div>
-              <span>Usuario</span>
+              <span>Usuário</span>
               <strong>{user?.name ?? 'Visitante'}</strong>
             </div>
             <div>
@@ -109,13 +128,17 @@ export default function SettingsPage() {
               <strong>{selectedPlan}</strong>
             </div>
             <div>
-              <span>Persistencia</span>
+              <span>Persistência</span>
               <strong>localStorage</strong>
+            </div>
+            <div>
+              <span>Idioma</span>
+              <strong>{languageLabels[settings.language]}</strong>
             </div>
           </div>
           <p>
-            Esta pagina centraliza configuracoes simples agora e pode receber preferencias de conta,
-            notificacoes e integracoes quando o backend entrar no projeto.
+            Esta página centraliza configurações simples agora e pode receber preferências de conta,
+            notificações e integrações quando o backend entrar no projeto.
           </p>
         </aside>
       </section>
