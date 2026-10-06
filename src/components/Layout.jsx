@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import logo from '../assets/images/logo/Logo-removebg-preview.png';
+import GoalChatbot from './GoalChatbot';
 
 const navigation = [
   { to: '/', label: 'Início' },
@@ -56,6 +57,8 @@ export default function Layout({ children }) {
           <p>Dados persistidos localmente com localStorage para facilitar a evolução futura.</p>
         </div>
       </footer>
+
+      <GoalChatbot />
     </div>
   );
 }
