@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { plans } from '../data/plans';
 import { useApp } from '../context/AppContext';
@@ -11,6 +11,8 @@ export default function PlanPage() {
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [prValue, setPrValue] = useState('');
   const [draftNote, setDraftNote] = useState('');
+  const [timerRemaining, setTimerRemaining] = useState(0);
+  const [timerRunning, setTimerRunning] = useState(false);
   const [draggingExercise, setDraggingExercise] = useState(null);
   const workouts = workoutOrders[slug] ?? plan?.workouts ?? [];
 
@@ -40,6 +42,8 @@ export default function PlanPage() {
 
   const openExercise = (workout) => {
     setSelectedExercise(workout);
+    setTimerRemaining(Number.parseInt(workout.rest, 10) || 0);
+    setTimerRunning(false);
     setDraftNote(notes[workout.exercise] ?? '');
     setPrValue('');
   };
@@ -52,10 +56,27 @@ export default function PlanPage() {
   };
 
   const closeExercise = () => {
+    setTimerRunning(false);
     setSelectedExercise(null);
     setDraftNote('');
     setPrValue('');
   };
+
+  useEffect(() => {
+    if (!timerRunning) return undefined;
+
+    const intervalId = window.setInterval(() => {
+      setTimerRemaining((remaining) => Math.max(0, remaining - 1));
+    }, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [timerRunning]);
+
+  useEffect(() => {
+    if (timerRemaining === 0) setTimerRunning(false);
+  }, [timerRemaining]);
+
+  const formatTimer = (seconds) => `${Math.floor(seconds / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}`;
 
   const handleSaveExercise = () => {
     if (!selectedExercise) return;
@@ -266,6 +287,20 @@ export default function PlanPage() {
             </div>
             <video className="exercise-video" src={selectedExercise.video} controls autoPlay/>
             <p>{selectedExercise.notes}</p>
+            <section className="rest-timer" aria-label="Timer de descanso">
+              <div>
+                <span className="meta-label">Descanso recomendado: {selectedExercise.rest}</span>
+                <strong className="rest-timer-display" role="timer" aria-live="polite">{formatTimer(timerRemaining)}</strong>
+              </div>
+              <button
+                type="button"
+                className="primary-button"
+                onClick={() => setTimerRunning((running) => !running)}
+                disabled={timerRemaining === 0 && !timerRunning}
+              >
+                {timerRunning ? 'Pausar timer' : timerRemaining === 0 ? 'Descanso concluído' : 'Iniciar timer'}
+              </button>
+            </section>
             <div className="exercise-meta">
               <div>
                 <span className="meta-label">Equipamento</span>
