@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { plans } from '../data/plans';
+import { experienceLevels, frequencyOptions, recommendPlan } from '../services/planRecommendation';
 
 const bodyMetrics = [
   { key: 'chest', label: 'Peito' },
@@ -15,6 +17,14 @@ const bodyMetrics = [
 export default function ProfilePage() {
   const { user, prs, history, updateProfile, addHistory } = useApp();
   const [profile, setProfile] = useState(user);
+  const profileGoal = String(profile.goal ?? '').toLocaleLowerCase();
+  const trainingGoalSlug = profile.trainingGoalSlug
+    ?? plans.find((plan) => profileGoal && plan.label.toLocaleLowerCase().includes(profileGoal))?.slug
+    ?? 'iniciantes';
+  const recommendation = useMemo(
+    () => recommendPlan({ ...profile, trainingGoalSlug }),
+    [profile, trainingGoalSlug]
+  );
   const [historyForm, setHistoryForm] = useState({
     date: new Date().toISOString().slice(0, 10),
     chest: '',
@@ -119,7 +129,13 @@ export default function ProfilePage() {
 
   const saveProfile = (event) => {
     event.preventDefault();
-    updateProfile(profile);
+    const recommendedPlan = plans.find((plan) => plan.slug === recommendation.slug);
+    updateProfile({
+      ...profile,
+      trainingGoalSlug,
+      goal: recommendedPlan?.label ?? profile.goal,
+      recommendedPlanSlug: recommendation.slug,
+    });
   };
 
 
@@ -224,6 +240,29 @@ export default function ProfilePage() {
               <span>Gordura corporal (%)</span>
               <input type="number" step="0.1" value={profile.bodyFat ?? ''} onChange={(e) => setProfile((c) => ({ ...c, bodyFat: Number(e.target.value) }))} />
             </label>
+            <label className="field">
+              <span>Objetivo de treino</span>
+              <select value={trainingGoalSlug} onChange={(e) => setProfile((current) => ({ ...current, trainingGoalSlug: e.target.value }))}>
+                {plans.map((plan) => <option key={plan.slug} value={plan.slug}>{plan.label}</option>)}
+              </select>
+            </label>
+            <label className="field">
+              <span>Nível de experiência</span>
+              <select value={profile.experienceLevel ?? 'iniciante'} onChange={(e) => setProfile((current) => ({ ...current, experienceLevel: e.target.value }))}>
+                {experienceLevels.map((level) => <option key={level.value} value={level.value}>{level.label}</option>)}
+              </select>
+            </label>
+            <label className="field full-span">
+              <span>Frequência desejada</span>
+              <select value={profile.desiredFrequency ?? 3} onChange={(e) => setProfile((current) => ({ ...current, desiredFrequency: Number(e.target.value) }))}>
+                {frequencyOptions.map((frequency) => <option key={frequency.value} value={frequency.value}>{frequency.label}</option>)}
+              </select>
+            </label>
+            <div className="profile-recommendation full-span" aria-live="polite">
+              <span>Plano recomendado pela estratégia</span>
+              <strong>{recommendation.label}</strong>
+              <p>{recommendation.reason}</p>
+            </div>
           </div>
           <button type="submit" className="primary-button">Salvar perfil</button>
         </form>
