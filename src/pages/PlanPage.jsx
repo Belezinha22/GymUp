@@ -188,6 +188,34 @@ export default function PlanPage() {
         </article>
       </section>
 
+      <section className="nutrition-section" aria-labelledby="nutrition-title">
+        <div className="workout-panel-header">
+          <div>
+            <span className="eyebrow">Hábitos que apoiam sua meta</span>
+            <h2 id="nutrition-title">Recomendações de suplementação e alimentação</h2>
+          </div>
+        </div>
+        <div className="nutrition-grid">
+          <article className="info-card">
+            <h3>Alimentação</h3>
+            <p>{plan.nutrition.food}</p>
+          </article>
+          <article className="info-card">
+            <h3>Suplementação</h3>
+            <p>{plan.nutrition.supplement}</p>
+          </article>
+          <article className="info-card nutrition-sources">
+            <h3>Fontes consultadas</h3>
+            <ul>
+              {plan.nutrition.sources.map((source) => (
+                <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.label}</a></li>
+              ))}
+            </ul>
+            <p className="muted-text">Conteúdo educativo geral, não substitui avaliação individual de nutricionista ou profissional de saúde.</p>
+          </article>
+        </div>
+      </section>
+
       <section className="workout-panel">
         <div className="workout-panel-header">
           <div>

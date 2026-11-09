@@ -312,6 +312,43 @@ h4 {
   align-items: start;
 }
 
+.nutrition-section {
+  margin-top: 1.5rem;
+}
+
+.nutrition-section > .workout-panel-header {
+  margin-bottom: 1rem;
+}
+
+.nutrition-section h2 {
+  margin: 0.45rem 0;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.nutrition-grid .info-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.nutrition-sources a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nutrition-sources li {
+  margin: 0.55rem 0;
+}
+
+.nutrition-sources .muted-text {
+  font-size: 0.88rem;
+}
+
 .stats-grid,
 .plan-grid,
 .info-grid,
@@ -1235,6 +1272,7 @@ h4 {
   .stats-grid,
   .plan-grid,
   .info-grid,
+  .nutrition-grid,
   .faq-grid,
   .settings-grid,
   .site-footer,
