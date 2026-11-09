@@ -58,10 +58,23 @@ ollama list
 
 ### Integração com o GymUp
 
-O assistente de metas que está no GymUp ainda **não usa o Ollama**: ele gera recomendações com regras locais no próprio navegador. Portanto, instalar e iniciar um modelo permite testá-lo pelo terminal ou pela API, mas não altera as respostas do assistente no site. A integração entre a interface e a API do Ollama ainda precisa ser implementada.
+O chatbot do GymUp usa um modelo local pelo Ollama. Baixe o modelo padrão e inicie o servidor de desenvolvimento:
+
+```powershell
+ollama pull qwen3:4b-instruct
+npm run dev
+```
+
+O Ollama deve permanecer aberto enquanto o chatbot é usado. Para produção, gere a build e inicie o servidor integrado:
+
+```bash
+npm run build
+npm start
+```
+
+O servidor usa `http://127.0.0.1:11434` e `qwen3:4b-instruct` por padrão. Se necessário, `OLLAMA_BASE_URL`, `OLLAMA_MODEL` e `PORT` podem ser definidos no `.env`; o arquivo `.env.example` documenta esses nomes sem conter credenciais.
 
 ## Observações
 
 - Os dados da aplicação são persistidos em `localStorage`.
 - As imagens e os vídeos utilizados pela aplicação ficam em `src/assets/`.
-- O projeto ainda não possui backend conectado.
