@@ -58,10 +58,15 @@ ollama list
 
 ### Integração com o GymUp
 
-O chatbot do GymUp usa um modelo local pelo Ollama. Baixe o modelo padrão e inicie o servidor de desenvolvimento:
+O chatbot do GymUp usa `qwen3:1.7b` (modelo configurado atualmente no projeto) pelo Ollama. Depois de instalar o Ollama, baixe esse modelo:
 
 ```powershell
-ollama pull qwen3:4b-instruct
+ollama pull qwen3:1.7b
+```
+
+Confirme que o Ollama está em execução e inicie o servidor de desenvolvimento:
+
+```powershell
 npm run dev
 ```
 
@@ -72,7 +77,7 @@ npm run build
 npm start
 ```
 
-O servidor usa `http://127.0.0.1:11434` e `qwen3:4b-instruct` por padrão. Se necessário, `OLLAMA_BASE_URL`, `OLLAMA_MODEL` e `PORT` podem ser definidos no `.env`; o arquivo `.env.example` documenta esses nomes sem conter credenciais.
+O servidor usa `http://127.0.0.1:11434` como endereço padrão da API. O modelo padrão no código é `qwen3:4b-instruct`; para usar o modelo atualmente adotado no projeto (`qwen3:1.7b`), defina `OLLAMA_MODEL=qwen3:1.7b` no `.env`. O arquivo `.env.example` documenta essas opções sem conter credenciais.
 
 ## Observações
 
